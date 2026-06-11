@@ -1,0 +1,13 @@
+# GithubManagement から呼び出す thin caller ワークフロー
+# ロジックは reusable ワークフロー側で管理され、@main 更新時に各リポジトリへ自動反映されます
+
+name: Trigger CodeRabbit for Bot PRs
+
+on:
+  pull_request:
+    types: [opened]
+
+jobs:
+  trigger:
+    uses: myapp-fa-sorasystem/GithubManagement/.github/workflows/reusable-trigger-coderabbit-bot-prs.yml@main
+    secrets: inherit

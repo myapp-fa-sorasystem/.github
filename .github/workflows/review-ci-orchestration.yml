@@ -1,0 +1,15 @@
+# GithubManagement から呼び出す thin caller ワークフロー
+# ロジックは reusable ワークフロー側で管理され、@main 更新時に各リポジトリへ自動反映されます
+
+name: Review & CI Orchestration
+
+on:
+  pull_request_review:
+    types: [submitted]
+  schedule:
+    - cron: '*/10 * * * *'
+
+jobs:
+  orchestration:
+    uses: myapp-fa-sorasystem/GithubManagement/.github/workflows/reusable-review-ci-orchestration.yml@main
+    secrets: inherit
